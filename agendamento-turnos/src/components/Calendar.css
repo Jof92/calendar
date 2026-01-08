@@ -1,0 +1,443 @@
+/* Calendar.css */
+
+.calendar-wrapper {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.calendar-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.nav-button:hover {
+  background-color: #2563eb;
+}
+
+/* Cabeçalho dos dias da semana — só visível em desktop */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: 600;
+  color: #4b5563;
+  padding: 8px 0;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.empty-day {
+  height: 128px;
+}
+
+.day-cell {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 128px;
+  position: relative;
+}
+
+/* Estilo do número do dia + nome do dia (mobile) */
+.day-number {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-weekday {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.mobile-date {
+  font-size: 1rem;
+}
+
+.turno-item {
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.turno {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.turno-manha {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.turno-manha.ocupado {
+  background-color: #10b981;
+  color: white;
+}
+
+.turno-tarde {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+.turno-tarde.ocupado {
+  background-color: #10b981;
+  color: white;
+}
+
+.turno.bloqueado,
+.turno.passado {
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.turno.bloqueado {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+.turno.passado {
+  background-color: #f3f4f6 !important;
+  color: #6b7280 !important;
+}
+
+.lock-icon {
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-icon svg {
+  width: 14px;
+  height: 14px;
+  color: #b91c1c;
+}
+
+.eye-button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 0;
+}
+
+.eye-button:hover {
+  background: #f9fafb;
+}
+
+.eye-button svg {
+  width: 14px;
+  height: 14px;
+  color: #4b5563;
+}
+
+.disabled-weekend {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  border: 1px dashed #d1d5db;
+}
+
+.weekend-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 24px);
+  font-size: 1.2rem;
+  color: #d1d5db;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.modal-close:hover {
+  color: #1f2937;
+}
+
+.modal-body,
+.modal-form {
+  padding: 24px;
+}
+
+.agendamento-info p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.mensagem-vazia {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Formulário */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.radio-group input {
+  margin-right: 8px;
+  width: 10%;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn.cancel {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.btn.cancel:hover {
+  background-color: #d1d5db;
+}
+
+.btn.submit {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn.submit:hover {
+  background-color: #2563eb;
+}
+
+/* Dias passados */
+.day-passado .day-number {
+  color: #9ca3af;
+}
+
+/* ✅ ESTILOS PARA MOBILE — layout vertical com dia da semana embutido */
+@media (max-width: 768px) {
+  /* Esconde o cabeçalho de dias da semana em mobile */
+  .weekdays {
+    display: none;
+  }
+
+  .days-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .empty-day {
+    display: none;
+  }
+
+  .day-cell {
+    min-height: auto;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .day-number {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .mobile-weekday {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: none;
+    min-width: 40px;
+  }
+
+  .mobile-date {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .turno-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .turno {
+    flex: 1;
+    text-align: center;
+    white-space: normal;
+    padding: 10px;
+    margin-right: 8px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+  }
+
+  .eye-button {
+    position: static;
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .eye-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Fim de semana em mobile */
+  .disabled-weekend {
+    opacity: 0.7;
+    background-color: #f3f4f6;
+  }
+
+  .disabled-weekend .mobile-weekday {
+    color: #9ca3af;
+  }
+
+  .disabled-weekend .mobile-date {
+    color: #9ca3af;
+  }
+
+  .weekend-placeholder {
+    display: none;
+  }
+}
